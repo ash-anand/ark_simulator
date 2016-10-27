@@ -34,7 +34,7 @@ cd jsbsim &&
 make -j2 &&
 sudo make install &&
 
-sudo -E apt-get install python-rosinstall ros-indigo-octomap-msgs ros-indigo-joy ros-indigo-geodesy ros-indigo-octomap-ros ros-indigo-mavlink unzip &&
+sudo -E apt-get install python-rosinstall ros-indigo-octomap-msgs ros-indigo-joy ros-indigo-geodesy ros-indigo-octomap-ros unzip &&
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/drc/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/drc-latest.list' &&
 cd ~/ark_simulation &&
 wget http://packages.osrfoundation.org/drc.key -O - | sudo apt-key add - &&
@@ -48,35 +48,28 @@ cd ~/ark_simulation/sim_catkin_ws &&
 catkin_make &&
 source devel/setup.bash &&
 cd src/ &&
-git clone https://github.com/erlerobot/ardupilot_sitl_gazebo_plugin || true &&
+git clone https://github.com/quadrotor-IITKgp/ardupilot_sitl_gazebo_plugin.git || true &&
 git clone https://github.com/tu-darmstadt-ros-pkg/hector_gazebo/ || true &&
 git clone https://github.com/erlerobot/rotors_simulator -b sonar_plugin || true &&
 git clone https://github.com/PX4/mav_comm.git || true &&
 git clone https://github.com/ethz-asl/glog_catkin.git || true &&
 git clone https://github.com/catkin/catkin_simple.git || true &&
 
-sudo -E apt-get install python-catkin-tools python-rosinstall-generator &&
-cd ~/ark_simulation/sim_catkin_ws &&
-wstool init src || true &&
-rosinstall_generator --upstream mavros | tee /tmp/mavros.rosinstall &&
-rosinstall_generator mavlink | tee -a /tmp/mavros.rosinstall &&
-wstool merge -t src /tmp/mavros.rosinstall &&
-wstool update -t src &&
+sudo -E apt-get install ros-indigo-mavlink
+sudo -E apt-get install python-catkin-tools &&
+cd ~/ark_simulation/sim_catkin_ws/src &&
+git clone https://github.com/ManashRaja/mavros.git || true &&
 cd ~/ark_simulation/sim_catkin_ws/src/mavros &&
-git checkout -b 0.17.3-manash &&
-git remote add manash https://github.com/ManashRaja/mavros.git &&
-git pull manash 0.17.3-indigo &&
+git checkout 0.17.3-indigo &&
 
 cd ~/ark_simulation/sim_catkin_ws &&
-touch src/mavlink/CATKIN_IGNORE &&
-catkin_make --pkg mav_msgs &&
+catkin_make --pkg mavros_msgs &&
 source devel/setup.bash &&
-catkin_make &&
 catkin_make &&
 
 cd ~/ark_simulation &&
 mkdir -p ~/.gazebo/models &&
-git clone https://github.com/erlerobot/erle_gazebo_models || true &&
+git clone https://github.com/quadrotor-IITKgp/ark_gazebo_models.git || true &&
 mv erle_gazebo_models/* ~/.gazebo/models || true
 
 # To run a demo
