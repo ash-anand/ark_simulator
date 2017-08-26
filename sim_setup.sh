@@ -10,16 +10,12 @@ sudo -E apt-get install libgazebo4-dev &&
 sudo -E apt-get install ros-indigo-gazebo4-ros-pkgs ros-indigo-gazebo4-ros-control &&
 sudo -E apt-get install gawk make git curl cmake &&
 sudo -E apt-get install g++ python-pip python-matplotlib python-serial python-wxgtk2.8 python-scipy python-opencv python-numpy python-pyparsing ccache realpath libopencv-dev &&
-sudo -E pip2 install pymavlink MAVProxy catkin_pkg --upgrade &&
+sudo -E pip install future &&
+sudo -E apt-get install zlib1g-dev &&
+#sudo -E pip2 install pymavlink 
+sudo -E pip2 install MAVProxy==1.5.2 catkin_pkg --upgrade &&
 
 mkdir -p ~/ark_simulation; cd ~/ark_simulation &&
-wget -O aruco.tgz https://sourceforge.net/projects/aruco/files/1.3.0/aruco-1.3.0.tgz/download &&
-tar -xvzf aruco.tgz &&
-cd aruco-1.3.0/ &&
-mkdir -p build && cd build &&
-cmake .. &&
-make &&
-sudo make install &&
 
 cd ~/ark_simulation &&
 git clone https://github.com/erlerobot/ardupilot || true &&
@@ -70,7 +66,7 @@ catkin_make &&
 cd ~/ark_simulation &&
 mkdir -p ~/.gazebo/models &&
 git clone https://github.com/quadrotor-IITKgp/ark_gazebo_models.git || true &&
-mv erle_gazebo_models/* ~/.gazebo/models || true
+mv ark_gazebo_models/* ~/.gazebo/models || true
 
 # To run a demo
 
