@@ -184,37 +184,65 @@
   </xacro:lidar_sensor>
 
 
-  <!-- Downward facing camera -->
+  <!-- Downward facing cameras -->
   <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/generic_camera.urdf.xacro" />
   <xacro:generic_camera
-    name="erlecopter/left"
+    name="erlecopter/bottom"
     parent="base_link"
     ros_topic="image_raw"
     cam_info_topic="camera_info"
     update_rate="60"
     res_x="640"
-    res_y="480"
+    res_y="360"
     image_format="R8G8B8"
-    hfov="45"
+    hfov="81"
+    framename="erlecopter_bottomcam">
+    <origin xyz="0.00 0.2 -0.02" rpy="0 ${45*M_PI/180} 0"/>
+  </xacro:generic_camera>
+  <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/generic_camera.urdf.xacro" />
+  <xacro:generic_camera
+    name="erlecopter/front"
+    parent="base_link"
+    ros_topic="image_front_raw"
+    cam_info_topic="camera_front_info"
+    update_rate="25"
+    res_x="640"
+    res_y="360"
+    image_format="R8G8B8"
+    hfov="81"
+    framename="erlecopter_frontcam">
+    <origin xyz="0.00 -0.2 -0.02" rpy="0 ${45*M_PI/180} 0"/>
+  </xacro:generic_camera>
+
+  <!-- Downward facing cameras 
+  <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/generic_camera.urdf.xacro" />
+  <xacro:generic_camera
+   name="erlecopter/bottom"
+    parent="base_link"
+    ros_topic="image_raw"
+    cam_info_topic="camera_info"
+    update_rate="60"
+    res_x="640"
+    res_y="360"
+    image_format="R8G8B8"
+    hfov="81"
     framename="erlecopter_bottomcam">
     <origin xyz="0.14 0.2 -0.02" rpy="0 ${45*M_PI/180} 0"/>
-  </xacro:generic_camera>  
-
-  <!-- Front facing camera -->
+  </xacro:generic_camera>
   <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/generic_camera.urdf.xacro" />
   <xacro:generic_camera
-    name="erlecopter/right"
+    name="erlecopter/front"
     parent="base_link"
-    ros_topic="image_raw"
-    cam_info_topic="camera_info"
-    update_rate="60"
+    ros_topic="image_front_raw"
+    cam_info_topic="camera_front_info"
+    update_rate="25"
     res_x="640"
-    res_y="480"
+    res_y="360"
     image_format="R8G8B8"
-    hfov="45"
+    hfov="81"
     framename="erlecopter_frontcam">
     <origin xyz="0.14 -0.2 -0.02" rpy="0 ${45*M_PI/180} 0"/>
-  </xacro:generic_camera>  
+  </xacro:generic_camera> -->
 
   <!-- Instantiate rotors -->
   <xacro:vertical_rotor

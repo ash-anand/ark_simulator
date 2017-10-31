@@ -1,1 +1,4 @@
 *~
+ardupilot/
+sim_catkin_ws/build/
+sim_catkin_ws/devel/

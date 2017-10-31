@@ -5,17 +5,15 @@
   <param name="use_sim_time" type="bool" value="true" />
   <include file="$(find mavros)/launch/apm_sitl.launch"></include>
 
-<!-- $(find drcsim_model_resources)/gazebo_models/environments: -->
-
   <arg name="enable_logging" default="false"/>
   <arg name="enable_ground_truth" default="true"/>
   <arg name="log_file" default="albatross"/>
   <arg name="headless" default="false"/>
   <arg name="gui" default="true"/>
-  <arg name="world_name" default="$(find ardupilot_sitl_gazebo_plugin)/worlds/outdoor_village/outdoor_village.world"/>
-  <env name="GAZEBO_MODEL_PATH" value="$(find drcsim_model_resources)/gazebo_models/environments:$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_sensors:$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_outdoor:$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_warehouse"/>
+  <arg name="world_name" default="$(find ardupilot_sitl_gazebo_plugin)/worlds/hedwig/village.world"/>
+  <env name="GAZEBO_MODEL_PATH" value="$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_sensors:$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_outdoor:$(find ardupilot_sitl_gazebo_plugin)/meshes/meshes_warehouse"/>
   <arg name="name" default="albatross"/>
-  <arg name="model" default="$(find ardupilot_sitl_gazebo_plugin)/urdf/hedwig_base.xacro"/>
+  <arg name="model" default="$(find ardupilot_sitl_gazebo_plugin)/urdf/hedwig_quad_base.xacro"/>
   <arg name="tf_prefix" default="$(optenv ROS_NAMESPACE)"/>
   <arg name="debug" default="false"/>
   <arg name="verbose" default="false"/>
