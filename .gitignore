@@ -2,3 +2,6 @@
 ardupilot/
 sim_catkin_ws/build/
 sim_catkin_ws/devel/
+*.kdev*
+sim_catkin_ws/.catkin_tools/
+sim_catkin_ws/logs/
