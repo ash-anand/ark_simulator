@@ -152,22 +152,22 @@
     <origin xyz="0.12 0.0 0.0" rpy="0 ${90*M_PI/180} 0"/>
   </xacro:sonar_sensor>
 
-    <!-- Frontal range sensor -->
-<!--  <xacro:sonar_sensor
-    name="sonar2"
+    <!-- Stereo Altitude Ground Truth -->
+  <xacro:sonar_sensor
+    name="sonar3"
     parent="base_link"
-    ros_topic="sonar_front"
+    ros_topic="stereo_altitude_gt"
     update_rate="10"
     min_range="0.01"
-    max_range="50.0"
+    max_range="150.0"
     field_of_view="${1*M_PI/180}"
     ray_count="1"
     sensor_mesh="lidar_lite_v2_withRay/meshes/lidar_lite_v2_withRay.dae">
-    <origin xyz="0.13 0.0 0.02" rpy="0 0 0"/>
+    <origin xyz="0.00 0.00 -0.02" rpy="0 ${45*M_PI/180} 0"/>
   </xacro:sonar_sensor>
--->
 
-  <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/lidar_sensor.urdf.xacro" />
+
+ <!-- <xacro:include filename="$(find ardupilot_sitl_gazebo_plugin)/urdf/sensors/lidar_sensor.urdf.xacro" />
    <xacro:lidar_sensor
     name="sonar2"
     parent="base_link"
@@ -181,7 +181,7 @@
     ray_count_vertical="1"
     sensor_mesh="lidar_lite_v2_withRay/meshes/lidar_lite_v2_withRay.dae">
     <origin xyz="0.13 0.0 0.07" rpy="0 0 0"/>
-  </xacro:lidar_sensor>
+  </xacro:lidar_sensor>-->
 
 
   <!-- Downward facing cameras -->
