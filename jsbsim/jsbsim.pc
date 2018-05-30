@@ -1,0 +1,8 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+
+Name: jsbsim
+Description: The jsbsim library
+Version: 1.0.0-advtrim-8
+Cflags: -I${prefix}/include/JSBSim
+Libs: -L${exec_prefix}/lib -ljsbsim
